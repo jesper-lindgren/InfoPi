@@ -1,0 +1,256 @@
+/* If you want you can use font-face */
+/*@font-face {
+    font-family: 'BebasNeueRegular';
+    src: url('BebasNeue-webfont.eot');
+    src: url('BebasNeue-webfont.eot?#iefix') format('embedded-opentype'),
+         url('BebasNeue-webfont.woff') format('woff'),
+         url('BebasNeue-webfont.ttf') format('truetype'),
+         url('BebasNeue-webfont.svg#BebasNeueRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}*/
+
+body {
+  background-color: #000;
+  color: #fff;
+}
+
+/* Analog Clock styles */
+.clock-container.clocks {
+  /*background: rgba(200, 200, 200, 0.9);*/
+  padding: 4em 0 2em 1em;
+  margin: 0;
+}
+
+.clock-container.clocks.single {
+  padding: 2em;
+  display: inline-block;
+}
+
+.clock-container.clocks.single .analog-clock {
+  height: 20em;
+  width: 20em;
+  padding: 0;
+  margin: 0;
+}
+
+.analog-clock.show {
+  opacity: 1;
+  transition: all 2.5s cubic-bezier(0.12, 1.03, 0.34, 1)
+}
+
+.analog-clock {
+  border-radius: 50%;
+  background: radial-gradient(#000, #000 0.1em, #fff 0.1em, #fff), #fff;
+  display: inline-block;
+  padding-bottom: 31.333%;
+  position: relative;
+  width: 31.333%;
+  opacity: 0;
+  /*border-radius: 50%;
+  height: 20em;
+  padding-bottom: 31%;
+  position: relative;
+  width: 20em;*/
+}
+
+.analog-clock::after {
+  background: red;
+  border-radius: 50%;
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  width: 4%;
+  height: 4%;
+  z-index: 10
+}
+
+.analog-clock.station {
+  background: #fff url(/images/station_clock.svg) no-repeat center;
+  background-size: 95%;
+  box-shadow: 0 0 0.5em rgba(0, 0, 0, 0.2) inset;
+}
+
+.analog-clock.station .analog-seconds::before {
+  background: red;
+  border-radius: 50%;
+  content: "";
+  position: absolute;
+  top: -9%;
+  left: -200%;
+  height: 18%;
+  width: 500%;
+}
+
+.analog-clock.ios7:before {
+  background: black;
+  border-radius: 50%;
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  width: 6%;
+  height: 6%;
+  z-index: 0;
+}
+
+.analog-clock.ios7:after {
+  width: 2%;
+  height: 2%
+}
+
+.analog-clock.ios7 .analog-seconds {
+  border-radius: 200%/10%;
+  height: 30%;
+  left: 49.5%;
+  top: 20%;
+  width: 1%;
+  -webkit-transform-origin: 50% 100%;
+  transform-origin: 50% 100%
+}
+
+.analog-clock.ios7 .analog-minutes {
+  border-radius: 150%/10%;
+  width: 2%;
+  height: 35%;
+  left: 49%;
+  top: 15%;
+  -webkit-transform-origin: 50% 100%;
+  transform-origin: 50% 100%
+  -webkit-transform-origin: 50% 100%;
+  transform-origin: 50% 100%
+}
+
+.analog-clock.ios7 .analog-hours {
+  border-radius: 85%/10%;
+  width: 2%;
+  height: 20%;
+  left: 49%;
+  top: 30%;
+  -webkit-transform-origin: 50% 100%;
+  transform-origin: 50% 100%
+}
+
+.analog-clock.ios7 {
+  background: #fff url(/images/ios_clock.svg) no-repeat center;
+  background-size: 88%;
+}
+
+.analog-clock.simple:after {
+  background: #000;
+  border-radius: 50%;
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 5%;
+  height: 5%;
+  z-index: 10;
+}
+
+.analog-minutes-container, .analog-hours-container, .analog-seconds-container {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.analog-hours {
+  background: #000;
+  width: 3.5%;
+  height: 40%;
+  position: absolute;
+  left: 48.25%;
+  top: 22%;
+  -webkit-transform-origin: 50% 71%;
+  transform-origin: 50% 71%;
+}
+
+.analog-minutes {
+  background: #000;
+  width: 3.5%;
+  height: 55%;
+  position: absolute;
+  left: 48.25%;
+  top: 7%;
+  -webkit-transform-origin: 50% 78.5%;
+  transform-origin: 50% 78.5%;
+}
+
+.analog-seconds {
+  background: red;
+  width: 1.5%;
+  height: 42%;
+  position: absolute;
+  left: 49.25%;
+  top: 20%;
+  -webkit-transform-origin: 50% 71%;
+  transform-origin: 50% 71%;
+  z-index: 8;
+}
+
+@-webkit-keyframes rotate {
+  100% {
+    -webkit-transform: rotateZ(360deg);
+    transform: rotateZ(360deg)
+  }
+}
+@keyframes rotate {
+  100% {
+    -webkit-transform: rotateZ(360deg);
+    transform: rotateZ(360deg);
+  }
+}
+
+.bounce .analog-minutes-container {
+    transition: -webkit-transform 0.3s cubic-bezier(0.4, 2.08, 0.55, 0.44);
+    transition: transform 0.3s cubic-bezier(0.4, 2.08, 0.55, 0.44);
+    transition: transform 0.3s cubic-bezier(0.4, 2.08, 0.55, 0.44), -webkit-transform 0.3s cubic-bezier(0.4, 2.08, 0.55, 0.44)
+}
+.bounce .analog-seconds-container {
+    transition: -webkit-transform 0.2s cubic-bezier(0.4, 2.08, 0.55, 0.44);
+    transition: transform 0.2s cubic-bezier(0.4, 2.08, 0.55, 0.44);
+    transition: transform 0.2s cubic-bezier(0.4, 2.08, 0.55, 0.44), -webkit-transform 0.2s cubic-bezier(0.4, 2.08, 0.55, 0.44)
+}
+
+.analog-hours-container {
+  -webkit-animation: rotate 43200s infinite linear;
+  animation: rotate 43200s infinite linear;
+}
+
+/* Digital Clock styles */
+.digital-clock {
+  margin: 0 auto;
+  padding: 30px;
+}
+
+#digital-date {
+  font-size: 1.5em;
+  text-align: center;
+}
+
+.digital-clock ul {
+  margin: 0 auto;
+  padding: 0px;
+  list-style: none;
+  text-align: center;
+}
+
+.digital-clock li {
+  display: inline;
+  font-size: 3em;
+  text-align: center;
+}
+
+#digital-point {
+  position: relative;
+  padding-left: 10px;
+  padding-right: 10px;
+}
