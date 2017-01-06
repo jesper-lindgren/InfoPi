@@ -84,3 +84,12 @@ Don't forget to make script executable!
 ```
 chmod +x start_infopi_server.sh
 ```
+
+## Installing webcam utilities
+In order to experiment with the picamera, the RPi-Cam-Web-Interface can be used. It is installed by the following commands
+```
+git clone https://github.com/silvanmelchior/RPi_Cam_Web_Interface.git
+cd RPi_Cam_Web_Interface
+chmod u+x *.sh
+./install.sh
+```
