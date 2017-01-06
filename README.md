@@ -85,6 +85,11 @@ Don't forget to make script executable!
 chmod +x start_infopi_server.sh
 ```
 
+In order to hide the cursor from showing, make sure that ```unclutter``` is installed, and add the following to the ```autostart``` file.
+```
+@unclutter -idle 0.1 root
+```
+
 ## Installing webcam utilities
 In order to experiment with the picamera, the RPi-Cam-Web-Interface can be used. It is installed by the following commands
 ```
