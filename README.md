@@ -98,3 +98,16 @@ cd RPi_Cam_Web_Interface
 chmod u+x *.sh
 ./install.sh
 ```
+
+## BLE support
+It requires more exeriments to manage to enable the BLE support for InfoPi. Install the ```noble``` package by
+```
+sudo apt-get install bluetooth bluez-utils libbluetooth-dev
+npm install --save noble
+```
+
+```
+https://github.com/sandeepmistry/noble
+https://labs.hybris.com/2014/10/06/connecting-to-multiple-ble-devices/
+```
+
