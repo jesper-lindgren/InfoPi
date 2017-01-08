@@ -19,10 +19,10 @@ def btnEventCB(channel):
 		eventObj = {'eventType': 'buttonPressed', 'subtype': '', 'buttonIndex': index}
 		if pressed > 2:
 			eventObj['subtype'] = 'longPress'
-			print('Long press (> 2 s)')
+			# print('Long press (> 2 s)')
 		else:
 			eventObj['subtype'] = 'shortPress'
-			print('Short press (< 2 s)')
+			# print('Short press (< 2 s)')
 		print(json.dumps(eventObj))
 	# Store the new btn state
 	btns_state[btns_map.index(channel)] = GPIO.input(channel)
@@ -33,4 +33,4 @@ GPIO.add_event_detect(26, GPIO.BOTH, callback=btnEventCB, bouncetime=50)
 
 while True:
 	time.sleep(10)
-	print('still running')
+	# print('still running')
