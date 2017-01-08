@@ -10,7 +10,7 @@ sudo apt-get dist-upgrade
 Install practical packages
 ```
 curl -sL https://deb.nodesource.com/setup_7.x | sudo -E bash -
-sudo apt-get install -y nodejs vim samba xinput git
+sudo apt-get install -y nodejs vim samba xinput git xdotool
 ```
 
 ## Setup samba
@@ -90,6 +90,14 @@ In order to hide the cursor from showing, make sure that ```unclutter``` is inst
 @unclutter -idle 0.1 root
 ```
 
+The browser can be refreshed by running the script ```scripts/refresh_browser.sh```
+```
+export DISPLAY=:0
+WID=$(xdotool search --onlyvisible --class chromium|head -1)
+xdotool windowactivate ${WID}
+xdotool key ctrl+F5
+```
+
 ## Installing webcam utilities
 In order to experiment with the picamera, the RPi-Cam-Web-Interface can be used. It is installed by the following commands
 ```
@@ -110,4 +118,3 @@ npm install --save noble
 https://github.com/sandeepmistry/noble
 https://labs.hybris.com/2014/10/06/connecting-to-multiple-ble-devices/
 ```
-
