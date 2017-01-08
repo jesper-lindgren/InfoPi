@@ -4,6 +4,9 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var log = require('./lib/logs.js');
+
+log.info('Starting InfoPi server app');
 
 var index = require('./routes/index');
 var users = require('./routes/users');

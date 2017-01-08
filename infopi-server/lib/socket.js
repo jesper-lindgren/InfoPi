@@ -1,3 +1,5 @@
+var log = require('./logs.js');
+
 var io
 
 function getSocket() {
@@ -8,7 +10,7 @@ function setSocket(ioObj) {
 	io = ioObj
 
 	io.on('connection', function(socket) {
-		console.log(new Date() + ' ' + 'socket.js: Socket connection');
+		log.info('Socket connection from ' + socket.request.connection.remoteAddress + ':' + socket.request.connection.remotePort)
 	});
 }
 
