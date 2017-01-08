@@ -8,17 +8,26 @@ var bodyParser = require('body-parser');
 var index = require('./routes/index');
 var users = require('./routes/users');
 
+var app = express();
+// Socket.io
+var server = require('http').Server(app);
+var socklib = require('./lib/socket.js');
+var io = require('socket.io')(server);
+socklib.setSocket(io)
+
 // User requires
 var Tail = require('tail').Tail;
-
-var ble_handler = require('./src/ble/ble_handler.js');
-// ble_handler.start();
-
-var app = express();
+var ble_handler = require('./src/ble/ble_handler.js'); // The ble subsystem will start automatically
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
+
+// Socket.io passing to middleware
+app.use(function(req, res, next) {
+  res.io = io;
+  next();
+});
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -60,4 +69,4 @@ app.use(function(err, req, res, next) {
 //   console.log('ERROR: ', error);
 // })
 
-module.exports = app;
+module.exports = {app: app, server: server};

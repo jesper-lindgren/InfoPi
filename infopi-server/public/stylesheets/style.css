@@ -15,6 +15,14 @@ body {
   color: #fff;
 }
 
+/* Sensor indicator */
+.sensor-indicator {
+  width: 1.5em;
+  height: 1.5em;
+  border-radius: 50%;
+  background-color: white;
+}
+
 /* Analog Clock styles */
 .clock-container.clocks {
   /*background: rgba(200, 200, 200, 0.9);*/

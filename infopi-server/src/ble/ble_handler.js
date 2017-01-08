@@ -1,5 +1,8 @@
+// var app = require('../../app.js');
+// var io = require('socket.io')(app.server);
 var noble = require('noble');
 var _ = require('underscore');
+var socklib = require('../../lib/socket.js')
 
 // BLE sensor system
 var serviceUuids = ['aa80']; // The CC2650 sensortag
@@ -112,6 +115,7 @@ var ble_setup_service = function(err, services) {
 
             // console.log(dataVal, dataCalc, humidityVal, humidityCalc);
             console.log(new Date() + ' ' + 'New humidity sensor data, temp: ' + dataCalc.toFixed(1) + '°C, humidity: ' + humidityCalc.toFixed(1) + '%');
+			socklib.getSocket().sockets.emit('sensorData', {temp: dataCalc, hum: humidityCalc});
           });
 
           dataChar.notify(true, function(err) {
@@ -192,4 +196,4 @@ var peripheral_print = function(p) {
   });
 }
 
-module.exports = {};
+module.exports = {}
