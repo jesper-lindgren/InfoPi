@@ -11,12 +11,16 @@ block content
             div(class="analog-minutes-container")
               div(class="analog-minutes")
             div(class="analog-seconds-container")
-              div(class="analog-seconds")
-
+                      div(class="analog-seconds")
     .row
-      .col-sm-1
-        .sensor-indicator
-      .col-sm-11
-        .sensor-text Test
+      .col-sm-12(align="center")
+        table(class='table table-inverse')
+          tr
+            td
+              .sensor-indicator
+            td
+              .sensor-text Test
+
 
   script(src='javascripts/clocks.js')
+  script(src='javascripts/sensors.js')

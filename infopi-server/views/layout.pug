@@ -16,11 +16,16 @@ html
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
     script(src="javascripts/global.js")
-    script(src="javascripts/sensors.js")
 
     script(src="/socket.io/socket.io.js")
 
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
   body
+    nav(class='navbar navbar-inverted')
+      .container-fluid
+        .navbar-header
+          a(class='btn btn-default navbar-btn' href='/') Index
+          a(class='btn btn-default navbar-btn' href='/development') Dev
+
     block content

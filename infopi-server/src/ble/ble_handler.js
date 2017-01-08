@@ -118,7 +118,7 @@ var ble_setup_service = function(err, services) {
 
                         // console.log(dataVal, dataCalc, humidityVal, humidityCalc);
                         log.silly('New humidity sensor data, temp: ' + dataCalc.toFixed(1) + '°C, humidity: ' + humidityCalc.toFixed(1) + '%')
-                        socklib.getSocket().sockets.emit('sensorData', {temp: dataCalc, hum: humidityCalc});
+                        socklib.getSocket().sockets.emit('sensorData', {sensor: configChar._peripheralUuid, type: 'temp/hum', data: {temp: dataCalc, hum: humidityCalc}});
                     });
 
                     dataChar.notify(true, function(err) {
