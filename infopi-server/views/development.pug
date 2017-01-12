@@ -12,15 +12,23 @@ block content
               div(class="analog-minutes")
             div(class="analog-seconds-container")
                       div(class="analog-seconds")
-    .row
-      .col-sm-12(align="center")
-        table(class='table table-inverse')
-          tr
-            td
-              .sensor-indicator
-            td
-              .sensor-text Test
+    //- .row
+    //-   .col-sm-12(align="center")
+    //-     table(class='table table-inverse')
+    //-       tr
+    //-         td
+    //-           .sensor-indicator
+            //- td
+            //-   #sensor-temp Temp
+            //- td
+            //-   #sensor-hum Hum
 
+    .row(align="center")
+      .sensor-indicator
+    .row(align="center")
+      #sensor-temp Temp
+    .row(align="center")   
+      #sensor-hum Hum
 
   script(src='javascripts/clocks.js')
   script(src='javascripts/sensors.js')

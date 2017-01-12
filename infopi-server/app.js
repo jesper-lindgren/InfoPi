@@ -5,6 +5,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var log = require('./lib/logs.js');
+var exec = require('child_process').exec;
 
 log.info('Starting InfoPi server app');
 
@@ -63,15 +64,34 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-// // Setup FIFO Tailing for movement detection
-// tail = new Tail('/var/www/html/FIFO');
+// Setup FIFO Tailing for movement detection
+var backlightState = 0;
 
-// tail.on('line', function(data) {
-//   console.log('new data!: ', data);
-// });
+tail = new Tail('./pipes/GPIOPIPE');
 
-// tail.on('error', function(error) {
-//   console.log('ERROR: ', error);
-// })
+tail.on('line', function(data) {
+  log.info('new data!: ', data);
+  var datajson = JSON.parse(data);
+  log.debug(datajson)
+  switch (datajson['eventType']) {
+    case ('buttonPressed'):
+      log.silly('buttonPressed')
+      if ((datajson['subtype'] == 'shortPress') && (datajson['buttonIndex'] == 1)) {
+        var cmd = 'sudo su -c "DISPLAY=:0 echo ' + backlightState + ' > /sys/class/backlight/rpi_backlight/bl_power"';
+        log.debug(cmd)
+        exec(cmd, function(error, stdout, stderr) {
+          if (error) log.error('error: ' + error);
+          if (stdout) log.info('stdout: ' + stdout);
+          if (stderr) log.error('stderr: ' + stderr);
+        });
+        backlightState = (backlightState == 1) ? 0 : 1;
+      }
+      break;
+  }
+});
+
+tail.on('error', function(error) {
+  log.info('ERROR: ', error);
+})
 
 module.exports = {app: app, server: server};

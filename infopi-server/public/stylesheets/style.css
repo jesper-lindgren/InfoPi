@@ -11,7 +11,7 @@
 }*/
 
 body {
-  padding: 20px;
+  margin: 20px;
   background-color: #000;
   color: #fff;
   transform: scale(1.08,1);
@@ -23,6 +23,11 @@ body {
   height: 1.5em;
   border-radius: 50%;
   background-color: white;
+}
+
+#sensor-temp, #sensor-hum {
+  font-size: 4em;
+  margin-top: 1.5em;
 }
 
 /* Analog Clock styles */
