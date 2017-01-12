@@ -86,6 +86,15 @@ tail.on('line', function(data) {
         });
         backlightState = (backlightState == 1) ? 0 : 1;
       }
+      if ((datajson['subtype'] == 'longPress') && (datajson['buttonIndex'] == 0)) {
+        var cmd = 'sudo shutdown --now';
+        log.debug(cmd)
+        exec(cmd, function(error, stdout, stderr) {
+          if (error) log.error('error: ' + error);
+          if (stdout) log.info('stdout: ' + stdout);
+          if (stderr) log.error('stderr: ' + stderr);
+        });
+      }
       break;
   }
 });
